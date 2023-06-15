@@ -96,20 +96,7 @@ int main(int argc, char** argv) {
 		delete[] procName;
 		return -1;
 	}
-	printf("[+] Created handle to remote thread (in suspended mode. Press <insert> to resume. TID: %ld\n", threadID);
-	while (1) {
-		SHORT state = GetAsyncKeyState(VK_INSERT);
-		if (state & 0x8000) {
-			// Insert key is pressed
-			printf("[*] Insert key is pressed. Resuming thread\n");
-			if (!hThread) { break; }
-			ResumeThread(hThread);
-			// Add your code here to execute when the Insert key is pressed
-			break;
-		}
-		// Optional: Sleep to reduce CPU usage
-		Sleep(10);
-	}
+	printf("[+] Created handle to remote thread, TID: %ld\n", threadID);
 	printf("[*] Waiting on object to exit\n");
 	WaitForSingleObject(hThread, INFINITE);
 
